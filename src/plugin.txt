@@ -1,0 +1,1 @@
+gscrot.processor.watermark.WatermarkPlugin
