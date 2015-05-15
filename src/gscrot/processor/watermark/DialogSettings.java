@@ -44,6 +44,7 @@ public class DialogSettings extends JDialog {
 		ButtonGroup group = new ButtonGroup();
 		
 		rdbtnImage = new JRadioButton("Image");
+		rdbtnImage.setSelected(WatermarkPlugin.mode == Mode.IMAGE);
 		group.add(rdbtnImage);
 		
 		JLabel lblFile = new JLabel("File:");
@@ -56,7 +57,7 @@ public class DialogSettings extends JDialog {
 		
 		rdbtnLabel = new JRadioButton("Label");
 		group.add(rdbtnLabel);
-		rdbtnLabel.setSelected(true);
+		rdbtnLabel.setSelected(WatermarkPlugin.mode == Mode.TEXT);
 		
 		JLabel lblText = new JLabel("Text:");
 		
