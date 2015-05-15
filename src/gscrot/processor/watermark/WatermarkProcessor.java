@@ -5,6 +5,10 @@ import gscrot.processor.watermark.WatermarkPlugin.Position;
 import iconlib.IconUtils;
 
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+
+import javax.imageio.ImageIO;
 
 import com.redpois0n.gscrot.GraphicsImageProcessor;
 
@@ -32,7 +36,25 @@ public class WatermarkProcessor extends GraphicsImageProcessor {
 				g.drawString(s, width - g.getFontMetrics().stringWidth(s) - 10, height - g.getFontMetrics().getHeight());
 			}
 		} else if (WatermarkPlugin.mode == Mode.IMAGE) {
-			
+			try {
+				File file = WatermarkPlugin.file;
+				
+				if (file != null) {
+					BufferedImage image = ImageIO.read(file);
+					
+					if (WatermarkPlugin.position == Position.TOPLEFT) {
+						g.drawImage(image, 10, 10, null);
+					} else if (WatermarkPlugin.position == Position.TOPRIGHT) {
+						g.drawImage(image, width - image.getWidth() - 10, 10, null);
+					} else if (WatermarkPlugin.position == Position.BOTTOMLEFT) {
+						g.drawImage(image, 10, height - image.getHeight() - 10, null);
+					} else if (WatermarkPlugin.position == Position.BOTTOMRIGHT) {
+						g.drawImage(image, width - image.getWidth() - 10, height - image.getHeight() - 10, null);
+					}
+				}
+			} catch (Exception ex) {
+				ex.printStackTrace();
+			}
 		}
 	}
 
