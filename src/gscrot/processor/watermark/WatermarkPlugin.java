@@ -13,6 +13,10 @@ import com.redpois0n.gscrot.ImageProcessor;
 import com.redpois0n.gscrot.ui.GlobalPopupMenu;
 
 public class WatermarkPlugin extends Plugin {
+	
+	public static Font font = new Font("Arial", Font.PLAIN, 14);
+	public static Color foreground = Color.white;
+	public static Color background = null;
 
 	public WatermarkPlugin() {
 		super("Watermark");
@@ -26,17 +30,15 @@ public class WatermarkPlugin extends Plugin {
 			}
 		});
 		GlobalPopupMenu.SETTINGS_ITEMS.add(item);
+		
+		load();
 	}
-
-	public static void setFont(Font font) {
+	
+	public static void load() {
 		
 	}
 
-	public static void setForeground(Color color) {
-		
-	}
-
-	public static void setBackground(Color color) {
+	public static void save() {
 		
 	}
 

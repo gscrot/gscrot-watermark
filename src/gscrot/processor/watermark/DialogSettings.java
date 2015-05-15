@@ -64,25 +64,25 @@ public class DialogSettings extends JDialog {
 		btnTextColor = new JButton("Text Color");
 		btnTextColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Foreground Color", Color.black);
+				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Foreground Color", WatermarkPlugin.foreground);
 				textPane.setForeground(color);
-				WatermarkPlugin.setForeground(color);
+				WatermarkPlugin.foreground = color;
 			}
 		});
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				WatermarkPlugin.setFont(textPane.getFont());
+				WatermarkPlugin.font = textPane.getFont();
 			}
 		});
 		
 		btnBackgroundColor = new JButton("Background");
 		btnBackgroundColor.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Background Color", Color.black);
+				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Background Color", WatermarkPlugin.background);
 				textPane.setBackground(color);
-				WatermarkPlugin.setBackground(color);
+				WatermarkPlugin.background = color;
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
