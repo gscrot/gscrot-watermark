@@ -110,16 +110,26 @@ public class DialogSettings extends JDialog {
 			}
 		});
 		
+		group = new ButtonGroup();
+		
 		panelPosition = new JPanel();
 		
 		rdbtnTopRight = new JRadioButton("");
+		group.add(rdbtnTopRight);
+		rdbtnTopRight.setSelected(WatermarkPlugin.position == Position.TOPRIGHT);
 		
 		rdbtnBottomRight = new JRadioButton("");
-		
+		group.add(rdbtnBottomRight);
+		rdbtnBottomRight.setSelected(WatermarkPlugin.position == Position.BOTTOMRIGHT);
+
 		rdbtnBottomLeft = new JRadioButton("");
+		group.add(rdbtnBottomLeft);
+		rdbtnBottomLeft.setSelected(WatermarkPlugin.position == Position.BOTTOMLEFT);
 		
 		rdbtnTopLeft = new JRadioButton("");
-		rdbtnTopLeft.setSelected(true);
+		group.add(rdbtnTopLeft);
+		rdbtnTopLeft.setSelected(WatermarkPlugin.position == Position.TOPLEFT);
+		
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
