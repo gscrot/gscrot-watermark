@@ -13,7 +13,7 @@ public class WatermarkProcessor extends GraphicsImageProcessor {
 	}
 
 	@Override
-	public void process(Graphics2D g) {
+	public void process(Graphics2D g, int width, int height) {
 		
 	}
 
