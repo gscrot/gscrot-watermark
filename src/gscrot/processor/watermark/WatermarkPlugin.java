@@ -2,6 +2,7 @@ package gscrot.processor.watermark;
 
 import gscrot.api.Plugin;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -28,6 +29,14 @@ public class WatermarkPlugin extends Plugin {
 	}
 
 	public static void setFont(Font font) {
+		
+	}
+
+	public static void setForeground(Color color) {
+		
+	}
+
+	public static void setBackground(Color color) {
 		
 	}
 

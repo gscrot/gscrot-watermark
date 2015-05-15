@@ -1,5 +1,6 @@
 package gscrot.processor.watermark;
 
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -7,6 +8,7 @@ import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -21,8 +23,9 @@ public class DialogSettings extends JDialog {
 	
 	private JTextField textField;
 	private JButton btnFont;
-	private JButton btnColor;
+	private JButton btnTextColor;
 	private JTextPane textPane;
+	private JButton btnBackgroundColor;
 	
 	public DialogSettings() {
 		setTitle("Watermark Settings");
@@ -58,12 +61,28 @@ public class DialogSettings extends JDialog {
 			}
 		});
 		
-		btnColor = new JButton("Color");
+		btnTextColor = new JButton("Text Color");
+		btnTextColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Foreground Color", Color.black);
+				textPane.setForeground(color);
+				WatermarkPlugin.setForeground(color);
+			}
+		});
 		
 		JButton btnOk = new JButton("OK");
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WatermarkPlugin.setFont(textPane.getFont());
+			}
+		});
+		
+		btnBackgroundColor = new JButton("Background");
+		btnBackgroundColor.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Background Color", Color.black);
+				textPane.setBackground(color);
+				WatermarkPlugin.setBackground(color);
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
@@ -77,11 +96,13 @@ public class DialogSettings extends JDialog {
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(lblText)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
 								.addGroup(groupLayout.createSequentialGroup()
 									.addComponent(btnFont)
 									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(btnColor))
+									.addComponent(btnTextColor)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(btnBackgroundColor, 0, 0, Short.MAX_VALUE))
 								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)))
 						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 							.addComponent(btnOk)
@@ -93,7 +114,7 @@ public class DialogSettings extends JDialog {
 								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(btnBrowse))))
-					.addContainerGap(152, Short.MAX_VALUE))
+					.addContainerGap(22, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -118,7 +139,8 @@ public class DialogSettings extends JDialog {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnFont)
-						.addComponent(btnColor))
+						.addComponent(btnTextColor)
+						.addComponent(btnBackgroundColor))
 					.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
 					.addComponent(btnOk)
 					.addContainerGap())
