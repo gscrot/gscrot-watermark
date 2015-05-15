@@ -1,18 +1,20 @@
 package gscrot.processor.watermark;
 
-import javax.swing.JDialog;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-import javax.swing.JRadioButton;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JTextPane;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class DialogSettings extends JDialog {
@@ -25,7 +27,10 @@ public class DialogSettings extends JDialog {
 	public DialogSettings() {
 		setTitle("Watermark Settings");
 		
+		ButtonGroup group = new ButtonGroup();
+		
 		JRadioButton rdbtnImage = new JRadioButton("Image");
+		group.add(rdbtnImage);
 		
 		JLabel lblFile = new JLabel("File:");
 		
@@ -36,6 +41,7 @@ public class DialogSettings extends JDialog {
 		JButton btnBrowse = new JButton("Browse");
 		
 		JRadioButton rdbtnLabel = new JRadioButton("Label");
+		group.add(rdbtnLabel);
 		rdbtnLabel.setSelected(true);
 		
 		JLabel lblText = new JLabel("Text:");
