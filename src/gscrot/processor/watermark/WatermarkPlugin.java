@@ -2,6 +2,7 @@ package gscrot.processor.watermark;
 
 import gscrot.api.Plugin;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -24,6 +25,10 @@ public class WatermarkPlugin extends Plugin {
 			}
 		});
 		GlobalPopupMenu.SETTINGS_ITEMS.add(item);
+	}
+
+	public static void setFont(Font font) {
+		
 	}
 
 }

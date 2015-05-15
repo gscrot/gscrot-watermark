@@ -16,6 +16,7 @@ import java.awt.event.ActionEvent;
 
 @SuppressWarnings("serial")
 public class DialogSettings extends JDialog {
+	
 	private JTextField textField;
 	private JButton btnFont;
 	private JButton btnColor;
@@ -52,20 +53,19 @@ public class DialogSettings extends JDialog {
 		});
 		
 		btnColor = new JButton("Color");
+		
+		JButton btnOk = new JButton("OK");
+		btnOk.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WatermarkPlugin.setFont(textPane.getFont());
+			}
+		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(rdbtnImage)
-							.addPreferredGap(ComponentPlacement.UNRELATED)
-							.addComponent(lblFile)
-							.addGap(12)
-							.addComponent(textField, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(btnBrowse))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(rdbtnLabel)
 							.addPreferredGap(ComponentPlacement.UNRELATED)
@@ -76,7 +76,17 @@ public class DialogSettings extends JDialog {
 									.addComponent(btnFont)
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addComponent(btnColor))
-								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE))))
+								.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 239, GroupLayout.PREFERRED_SIZE)))
+						.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+							.addComponent(btnOk)
+							.addGroup(groupLayout.createSequentialGroup()
+								.addComponent(rdbtnImage)
+								.addPreferredGap(ComponentPlacement.UNRELATED)
+								.addComponent(lblFile)
+								.addGap(12)
+								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
+								.addPreferredGap(ComponentPlacement.RELATED)
+								.addComponent(btnBrowse))))
 					.addContainerGap(152, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
@@ -103,7 +113,9 @@ public class DialogSettings extends JDialog {
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnFont)
 						.addComponent(btnColor))
-					.addContainerGap(209, Short.MAX_VALUE))
+					.addPreferredGap(ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+					.addComponent(btnOk)
+					.addContainerGap())
 		);
 		
 		textPane = new JTextPane();
