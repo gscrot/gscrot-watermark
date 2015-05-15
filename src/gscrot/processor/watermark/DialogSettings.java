@@ -1,5 +1,7 @@
 package gscrot.processor.watermark;
 
+import gscrot.processor.watermark.WatermarkPlugin.Mode;
+
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,13 +28,15 @@ public class DialogSettings extends JDialog {
 	private JButton btnTextColor;
 	private JTextPane textPane;
 	private JButton btnBackgroundColor;
+	private JRadioButton rdbtnLabel;
+	private JRadioButton rdbtnImage;
 	
 	public DialogSettings() {
 		setTitle("Watermark Settings");
 		
 		ButtonGroup group = new ButtonGroup();
 		
-		JRadioButton rdbtnImage = new JRadioButton("Image");
+		rdbtnImage = new JRadioButton("Image");
 		group.add(rdbtnImage);
 		
 		JLabel lblFile = new JLabel("File:");
@@ -43,7 +47,7 @@ public class DialogSettings extends JDialog {
 		
 		JButton btnBrowse = new JButton("Browse");
 		
-		JRadioButton rdbtnLabel = new JRadioButton("Label");
+		rdbtnLabel = new JRadioButton("Label");
 		group.add(rdbtnLabel);
 		rdbtnLabel.setSelected(true);
 		
@@ -66,7 +70,6 @@ public class DialogSettings extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Foreground Color", WatermarkPlugin.foreground);
 				textPane.setForeground(color);
-				WatermarkPlugin.foreground = color;
 			}
 		});
 		
@@ -74,6 +77,11 @@ public class DialogSettings extends JDialog {
 		btnOk.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				WatermarkPlugin.font = textPane.getFont();
+				WatermarkPlugin.foreground = textPane.getForeground();
+				WatermarkPlugin.background = textPane.getBackground();
+				WatermarkPlugin.mode = rdbtnLabel.isSelected() ? Mode.TEXT : Mode.IMAGE;
+				
+				WatermarkPlugin.save();
 			}
 		});
 		
@@ -82,7 +90,6 @@ public class DialogSettings extends JDialog {
 			public void actionPerformed(ActionEvent e) {
 				Color color = JColorChooser.showDialog(DialogSettings.this, "Select Background Color", WatermarkPlugin.background);
 				textPane.setBackground(color);
-				WatermarkPlugin.background = color;
 			}
 		});
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
