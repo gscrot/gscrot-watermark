@@ -2,10 +2,12 @@ package gscrot.processor.watermark;
 
 import gscrot.processor.watermark.WatermarkPlugin.Mode;
 import gscrot.processor.watermark.WatermarkPlugin.Position;
+import iconlib.IconUtils;
 
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 
 import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
@@ -25,7 +27,7 @@ import javax.swing.ScrollPaneConstants;
 @SuppressWarnings("serial")
 public class DialogSettings extends JDialog {
 	
-	private JTextField textField;
+	private JTextField txtFile;
 	private JButton btnFont;
 	private JButton btnTextColor;
 	private JTextPane textPane;
@@ -40,6 +42,7 @@ public class DialogSettings extends JDialog {
 	
 	public DialogSettings() {
 		setTitle("Watermark Settings");
+		setIconImage(IconUtils.getIcon("watermark", WatermarkProcessor.class).getImage());
 		
 		ButtonGroup group = new ButtonGroup();
 		
@@ -49,9 +52,12 @@ public class DialogSettings extends JDialog {
 		
 		JLabel lblFile = new JLabel("File:");
 		
-		textField = new JTextField();
-		textField.setEditable(false);
-		textField.setColumns(10);
+		txtFile = new JTextField();
+		if (WatermarkPlugin.file != null) {
+			txtFile.setText(WatermarkPlugin.file.getAbsolutePath());
+		}
+		txtFile.setEditable(false);
+		txtFile.setColumns(10);
 		
 		JButton btnBrowse = new JButton("Browse");
 		
@@ -88,6 +94,7 @@ public class DialogSettings extends JDialog {
 				WatermarkPlugin.foreground = textPane.getForeground();
 				WatermarkPlugin.background = textPane.getBackground();
 				WatermarkPlugin.mode = rdbtnLabel.isSelected() ? Mode.TEXT : Mode.IMAGE;
+				WatermarkPlugin.file = new File(txtFile.getText());
 				
 				if (rdbtnTopRight.isSelected()) {
 					WatermarkPlugin.position = Position.TOPRIGHT;
@@ -169,7 +176,7 @@ public class DialogSettings extends JDialog {
 								.addPreferredGap(ComponentPlacement.UNRELATED)
 								.addComponent(lblFile)
 								.addGap(12)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtFile, GroupLayout.PREFERRED_SIZE, 240, GroupLayout.PREFERRED_SIZE)
 								.addPreferredGap(ComponentPlacement.RELATED)
 								.addComponent(btnBrowse))))
 					.addContainerGap(22, Short.MAX_VALUE))
@@ -186,7 +193,7 @@ public class DialogSettings extends JDialog {
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(8)
 							.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-								.addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtFile, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(btnBrowse))))
 					.addPreferredGap(ComponentPlacement.UNRELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)

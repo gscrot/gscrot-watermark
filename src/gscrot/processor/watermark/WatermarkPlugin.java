@@ -32,6 +32,7 @@ public class WatermarkPlugin extends Plugin {
 	}
 	
 	public static String string = "Watermark";
+	public static File file;
 	public static Position position = Position.TOPLEFT;
 	public static Mode mode = Mode.TEXT;
 	public static Font font = new Font("Arial", Font.PLAIN, 14);
@@ -61,6 +62,7 @@ public class WatermarkPlugin extends Plugin {
 			position = (Position) ois.readObject();
 			mode = (Mode) ois.readObject();
 			string = (String) ois.readObject();
+			file = (File) ois.readObject();
 			font = (Font) ois.readObject();
 			foreground = (Color) ois.readObject();
 			background = (Color) ois.readObject();
@@ -78,6 +80,7 @@ public class WatermarkPlugin extends Plugin {
 			oos.writeObject(position);
 			oos.writeObject(mode);
 			oos.writeObject(string);
+			oos.writeObject(file);
 			oos.writeObject(font);
 			oos.writeObject(foreground);
 			oos.writeObject(background);
