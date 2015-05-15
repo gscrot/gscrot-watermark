@@ -23,13 +23,13 @@ public class WatermarkProcessor extends GraphicsImageProcessor {
 			String s = WatermarkPlugin.string;
 			
 			if (WatermarkPlugin.position == Position.TOPLEFT) {
-				g.drawString(s, 10, 10);
+				g.drawString(s, 10, 10 + g.getFontMetrics().getHeight());
 			} else if (WatermarkPlugin.position == Position.TOPRIGHT) {
 				g.drawString(s, width - g.getFontMetrics().stringWidth(s) - 10, 10);
 			} else if (WatermarkPlugin.position == Position.BOTTOMLEFT) {
-				g.drawString(s, 10, height - g.getFontMetrics().getHeight() - 10);
+				g.drawString(s, 10, height - g.getFontMetrics().getHeight());
 			} else if (WatermarkPlugin.position == Position.BOTTOMRIGHT) {
-				g.drawString(s, width - g.getFontMetrics().stringWidth(s) - 10, height - g.getFontMetrics().getHeight() - 10);
+				g.drawString(s, width - g.getFontMetrics().stringWidth(s) - 10, height - g.getFontMetrics().getHeight());
 			}
 		} else if (WatermarkPlugin.mode == Mode.IMAGE) {
 			
