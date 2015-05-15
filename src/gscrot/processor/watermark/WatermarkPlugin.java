@@ -14,7 +14,7 @@ public class WatermarkPlugin extends Plugin {
 
 	public WatermarkPlugin() {
 		super("Watermark");
-		ImageProcessor.addProcessor(new WatermarkProcessor());
+		ImageProcessor.addGraphicsProcessor(new WatermarkProcessor());
 		
 		JMenuItem item = new JMenuItem("Watermark Settings");
 		item.addActionListener(new ActionListener() {

@@ -1,12 +1,12 @@
 package gscrot.processor.watermark;
 
-import java.awt.Graphics2D;
-
 import iconlib.IconUtils;
 
-import com.redpois0n.gscrot.ImageProcessor;
+import java.awt.Graphics2D;
 
-public class WatermarkProcessor extends ImageProcessor {
+import com.redpois0n.gscrot.GraphicsImageProcessor;
+
+public class WatermarkProcessor extends GraphicsImageProcessor {
 
 	public WatermarkProcessor() {
 		super("Watermark", IconUtils.getIcon("watermark", WatermarkProcessor.class));
