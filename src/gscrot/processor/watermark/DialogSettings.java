@@ -220,6 +220,9 @@ public class DialogSettings extends JDialog {
 		);
 		
 		textPane = new JTextPane();
+		textPane.setForeground(WatermarkPlugin.foreground);
+		textPane.setBackground(WatermarkPlugin.background);
+		textPane.setFont(WatermarkPlugin.font);
 		scrollPane.setViewportView(textPane);
 		getContentPane().setLayout(groupLayout);
 		
