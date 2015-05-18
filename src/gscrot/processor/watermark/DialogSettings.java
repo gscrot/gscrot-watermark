@@ -23,6 +23,7 @@ import javax.swing.JTextField;
 import javax.swing.JTextPane;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.border.LineBorder;
 
 @SuppressWarnings("serial")
 public class DialogSettings extends JDialog {
@@ -41,6 +42,7 @@ public class DialogSettings extends JDialog {
 	private JRadioButton rdbtnTopLeft;
 	
 	public DialogSettings() {
+		setResizable(false);
 		setTitle("Watermark Settings");
 		setIconImage(IconUtils.getIcon("watermark", WatermarkProcessor.class).getImage());
 		
@@ -121,6 +123,7 @@ public class DialogSettings extends JDialog {
 		group = new ButtonGroup();
 		
 		panelPosition = new JPanel();
+		panelPosition.setBorder(new LineBorder(new Color(0, 0, 0)));
 		
 		rdbtnTopRight = new JRadioButton("");
 		group.add(rdbtnTopRight);
@@ -154,15 +157,15 @@ public class DialogSettings extends JDialog {
 								.addGroup(groupLayout.createSequentialGroup()
 									.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 										.addGroup(groupLayout.createSequentialGroup()
-											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-												.addComponent(rdbtnTopLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-												.addComponent(rdbtnBottomLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-											.addPreferredGap(ComponentPlacement.UNRELATED)
-											.addComponent(panelPosition, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
-										.addGroup(groupLayout.createSequentialGroup()
 											.addComponent(btnFont)
 											.addPreferredGap(ComponentPlacement.RELATED)
-											.addComponent(btnTextColor)))
+											.addComponent(btnTextColor))
+										.addGroup(groupLayout.createSequentialGroup()
+											.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+												.addComponent(rdbtnBottomLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+												.addComponent(rdbtnTopLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+											.addPreferredGap(ComponentPlacement.UNRELATED)
+											.addComponent(panelPosition, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)))
 									.addPreferredGap(ComponentPlacement.RELATED)
 									.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 										.addComponent(rdbtnBottomRight, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
@@ -206,25 +209,23 @@ public class DialogSettings extends JDialog {
 						.addComponent(btnFont)
 						.addComponent(btnTextColor)
 						.addComponent(btnBackgroundColor))
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(18)
 							.addComponent(panelPosition, GroupLayout.PREFERRED_SIZE, 78, GroupLayout.PREFERRED_SIZE)
-							.addPreferredGap(ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+							.addPreferredGap(ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
 							.addComponent(btnOk)
 							.addContainerGap())
-						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
+						.addGroup(groupLayout.createSequentialGroup()
 							.addGap(7)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+								.addComponent(rdbtnTopLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+								.addComponent(rdbtnTopRight))
+							.addPreferredGap(ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(rdbtnTopLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
-									.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-									.addComponent(rdbtnBottomLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(rdbtnTopRight)
-									.addPreferredGap(ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
-									.addComponent(rdbtnBottomRight, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)))
-							.addGap(51))))
+								.addComponent(rdbtnBottomLeft, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE)
+								.addComponent(rdbtnBottomRight, GroupLayout.PREFERRED_SIZE, 21, GroupLayout.PREFERRED_SIZE))
+							.addGap(44))))
 		);
 		
 		textPane = new JTextPane();
