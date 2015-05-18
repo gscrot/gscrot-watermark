@@ -15,6 +15,7 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
@@ -62,6 +63,18 @@ public class DialogSettings extends JDialog {
 		txtFile.setColumns(10);
 		
 		JButton btnBrowse = new JButton("Browse");
+		btnBrowse.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				JFileChooser c = new JFileChooser();
+				c.setFileSelectionMode(JFileChooser.FILES_ONLY);
+				
+				File file = c.getSelectedFile();
+				
+				if (file != null) {
+					txtFile.setText(file.getAbsolutePath());
+				}
+			}
+		});
 		
 		rdbtnLabel = new JRadioButton("Label");
 		group.add(rdbtnLabel);
